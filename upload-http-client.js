@@ -189,7 +189,7 @@ UploadTransferQueue = function(options) {
       if (typeof Accounts !== "undefined") {
         authToken = btoa(JSON.stringify({
           authToken: Accounts._storedLoginToken() || '',
-          expiration: Date.now() + 60000 // We actually need the server time
+          expiration: FS.HTTP.now() + 60000 // We actually need the server time
         }));
       }
 
