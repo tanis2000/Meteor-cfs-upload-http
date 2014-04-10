@@ -187,7 +187,10 @@ UploadTransferQueue = function(options) {
       // TODO: Could we somehow figure out if the collection requires login?
       var authToken = '';
       if (typeof Accounts !== "undefined") {
-        authToken = Accounts._storedLoginToken() || '';
+        authToken = btoa(JSON.stringify({
+          authToken: Accounts._storedLoginToken() || '',
+          expiration: Date.now() + 60000 // We actually need the server time
+        }));
       }
 
       // Construct query string
